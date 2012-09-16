@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
 		// echo globally (all clients) that a person has connected
 		socket.broadcast.emit('updatelog', 'SERVER', username + ' has connected');
 		// update the list of users in chat, client-side
-		//io.sockets.emit('updateusers', usernames);
+		io.sockets.emit('updateusers', usernames);
 	});
 
 	// when the user disconnects.. perform this
@@ -34,7 +34,7 @@ io.sockets.on('connection', function (socket) {
 		// remove the username from global usernames list
 		delete usernames[socket.username];
 		// update list of users in chat, client-side
-		//io.sockets.emit('updateusers', usernames);
+		io.sockets.emit('updateusers', usernames);
 		// echo globally that this client has left
 		socket.broadcast.emit('updatelog', 'SERVER', socket.username + ' has disconnected');
 	});

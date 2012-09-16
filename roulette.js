@@ -15,6 +15,12 @@ var usernames = {};
 
 io.sockets.on('connection', function (socket) {
 
+	// // when the client emits 'sendchat', this listens and executes
+	// socket.on('sendchat', function (data) {
+	// 	// we tell the client to execute 'updatechat' with 2 parameters
+	// 	io.sockets.emit('updatechat', socket.username, data);
+	// });
+
 	// when the client emits 'adduser', this listens and executes
 	socket.on('adduser', function(username){
 		// we store the username in the socket session for this client
@@ -26,7 +32,7 @@ io.sockets.on('connection', function (socket) {
 		// echo globally (all clients) that a person has connected
 		socket.broadcast.emit('updatelog', 'SERVER', username + ' has connected');
 		// update the list of users in chat, client-side
-		//io.sockets.emit('updateusers', usernames);
+		io.sockets.emit('updateusers', usernames);
 	});
 
 	// when the user disconnects.. perform this
@@ -34,7 +40,7 @@ io.sockets.on('connection', function (socket) {
 		// remove the username from global usernames list
 		delete usernames[socket.username];
 		// update list of users in chat, client-side
-		//io.sockets.emit('updateusers', usernames);
+		io.sockets.emit('updateusers', usernames);
 		// echo globally that this client has left
 		socket.broadcast.emit('updatelog', 'SERVER', socket.username + ' has disconnected');
 	});

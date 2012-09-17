@@ -1,4 +1,6 @@
-var io = require('socket.io').listen(parseInt(process.env.PORT));
+var port = process.env.PORT || 5001;
+
+var io = require('socket.io').listen(parseInt(port));
 
 io.configure(function(){
   io.set("transports", ["xhr-polling"]); 

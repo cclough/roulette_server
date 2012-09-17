@@ -1,8 +1,5 @@
+var io = require('socket.io').listen(parseInt(process.env.PORT));
 
-var app = require('http').createServer();
-var io = require('socket.io');
-
-io = io.listen(app);
 io.configure(function(){
   io.set("transports", ["xhr-polling"]); 
   io.set("polling duration", 10); 
@@ -39,7 +36,3 @@ io.sockets.on('connection', function (socket) {
 		socket.broadcast.emit('updatelog', 'SERVER', socket.username + ' has disconnected');
 	});
 });
-
-//this line is necessary for heroku
-var port = process.env.PORT || 5001;
-app.listen(port);

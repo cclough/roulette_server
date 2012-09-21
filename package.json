@@ -1,6 +1,6 @@
 {
   "name": "roulette_server",
-  "version": "0.0.1-15",
+  "version": "0.0.1-16",
   "dependencies": {
     "socket.io": "0.8.7"
   },

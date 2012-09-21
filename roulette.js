@@ -2,12 +2,7 @@ var port = process.env.PORT || 5001;
 
 var io = require('socket.io').listen(parseInt(port));
 
-io.configure(function(){
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-  io.set("close timeout", 10);
-  io.set("log level", 1);
-})
+io.set( 'origins', 'salty-crag-5200.herokuapp.com:*' );
 
 // usernames which are currently connected to the chat
 var usernames = {};

@@ -1,7 +1,14 @@
 {
-    "name": "casenexus_roulette",
-    "version": "0.0.1",
-    "dependencies": {
-        "socket.io": "0.8.7"
-    }
+  "name": "roulette_server",
+  "version": "0.0.1-15",
+  "dependencies": {
+    "socket.io": "0.8.7"
+  },
+  "subdomain": "cclough.rsj",
+  "scripts": {
+    "start": "node roulette.js"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
 }

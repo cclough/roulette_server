@@ -23,6 +23,12 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('updateusers', usernames);
 	});
 
+	// private message code from - http://stackoverflow.com/questions/11356001/socket-io-private-message
+	socket.on('private', function(data) {        
+        io.sockets.sockets[data.to].emit('private', { from: socket.id, to: data.to, msg: data.msg });
+   		socket.emit('private', { from: socket.id, to: data.to, msg: data.msg });
+   	});
+
 	// when the user disconnects.. perform this
 	socket.on('disconnect', function(){
 		// remove the username from global usernames list

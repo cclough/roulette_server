@@ -14,7 +14,7 @@ io.sockets.on('connection', function (socket) {
 		// we store the username in the socket session for this client
 		socket.username = username;
 		// add the client's username to the global list
-		usernames[username] = username;
+		usernames[username] = socket.id;
 		// echo to client they've connected
 		socket.emit('updatelog', 'SERVER', 'you have connected');
 		// echo globally (all clients) that a person has connected
@@ -24,9 +24,15 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	// private message code from - http://stackoverflow.com/questions/11356001/socket-io-private-message
-	socket.on('private', function(data) {        
-    io.sockets.socket(data.to).emit('private', { from: socket.id, to: data.to, msg: data.msg });
-   	socket.emit('private', { from: socket.id, to: data.to, msg: data.msg });
+	socket.on('private', function(data) {
+		var myusername = socket.username;
+		var tousername = data.to;
+		var msg = data.msg;
+		var tosocketid = usernames[tousername];
+		var tosocket = io.sockets.sockets[tosocketid];
+
+    tosocket.emit('private', { from: myusername, to: tousername, msg: msg });
+   	socket.emit('private', { from: myusername, to: tousername, msg: msg });
   });
 
 	// when the user disconnects.. perform this

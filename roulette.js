@@ -24,6 +24,7 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	// private message code from - http://stackoverflow.com/questions/11356001/socket-io-private-message
+	// Fixed by Kevin
 	socket.on('private', function(data) {
 		var myusername = socket.username;
 		var tousername = data.to;
@@ -32,7 +33,6 @@ io.sockets.on('connection', function (socket) {
 		var tosocket = io.sockets.sockets[tosocketid];
 
     tosocket.emit('private', { from: myusername, to: tousername, msg: msg });
-   	socket.emit('private', { from: myusername, to: tousername, msg: msg });
   });
 
 	// when the user disconnects.. perform this

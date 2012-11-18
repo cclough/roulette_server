@@ -2,7 +2,7 @@ var port = process.env.PORT || 5001;
 
 var io = require('socket.io').listen(parseInt(port));
 
-io.set( 'origins', 'salty-crag-5200.herokuapp.com:*' );
+io.set( 'origins', 'www.casenexus.com:*' );
 
 // usernames which are currently connected to the chat
 var usernames = {};

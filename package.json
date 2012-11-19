@@ -1,8 +1,8 @@
 {
   "name": "roulette_server",
-  "version": "0.0.1-41",
+  "version": "0.1.0",
   "dependencies": {
-    "socket.io": "0.8.7"
+    "socket.io": "0.9.11"
   },
   "subdomain": "cclough",
   "scripts": {

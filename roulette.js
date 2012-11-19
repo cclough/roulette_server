@@ -2,7 +2,7 @@ var port = process.env.PORT || 443;
 
 var io = require('socket.io').listen(parseInt(port));
 
-io.set( 'origins', 'casenexus.herokuapp.com:*' );
+io.set( 'origins', 'www.casenexus.com:*' );
 
 // user_ids has the array of connected users with their socket id
 var user_ids = {};

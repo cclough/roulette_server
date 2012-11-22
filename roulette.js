@@ -1,4 +1,4 @@
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 443;
 
 var io = require('socket.io').listen(parseInt(port));
 

@@ -1,4 +1,4 @@
-var port = process.env.PORT || 443;
+var port = process.env.PORT || 80;
 
 var io = require('socket.io').listen(parseInt(port));
 
@@ -9,7 +9,7 @@ var user_ids = {};
 
 io.sockets.on('connection', function (socket) {
 	// when the client emits 'adduser', this listens and executes
-	socket.on('adduser', function(data) {
+	socket.on('add_user', function(data) {
 		// we store the username in the socket session for this client
 		socket.user_id = data.id;
 		socket.user_name = data.name;
